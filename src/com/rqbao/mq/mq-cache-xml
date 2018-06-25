@@ -1,0 +1,17 @@
+LotteryResultRecordMapper.xml
+	<select id="getListMap" resultType="map">
+		SELECT
+			sum(award_amount) as amount,
+			giving_user_id as loanId
+		FROM
+			lottery_result_record
+		WHERE
+			user_id = #{userId}
+		AND lottery_id = #{lotteryId}
+		GROUP BY
+			giving_user_id;
+	</select>
+	
+	<delete id="deleteByUserIdAndLotteryId">
+		delete from lottery_result_record where user_id = #{userId} and lottery_id = #{lotteryId}
+	</delete>
